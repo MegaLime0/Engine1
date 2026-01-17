@@ -2,6 +2,8 @@
 #include <SDL3/SDL_video.h>
 #include <string>
 
+namespace engine {
+
 struct WindowConfig {
     int width, height;
     std::string title;
@@ -26,3 +28,6 @@ class Window {
         SDL_Window* _window;
         SDL_GLContext _glContext;
 };
+
+}
+

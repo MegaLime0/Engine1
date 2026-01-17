@@ -1,11 +1,13 @@
 #pragma once
 #include <string>
 
+namespace engine {
 // Individual shader program handle
 
 class Shader {
     public:
         Shader(std::string vPath, std::string fPath);
+        ~Shader();
 
         void use();
 
@@ -13,3 +15,5 @@ class Shader {
     private:
         int _program;
 };
+
+}
