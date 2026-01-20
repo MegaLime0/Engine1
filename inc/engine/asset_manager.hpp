@@ -1,30 +1,43 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <queue>
 #include <glad/glad.h>
+#include <engine/shader.hpp>
+#include <engine/texture.hpp>
+#include <engine/tilemap.hpp>
 
 namespace engine {
 
-struct ShaderID { unsigned int value; };
-struct TextureID { unsigned int value; };
-struct TileMapID {unsigned int value; };
+struct ShaderID { size_t value; };
+struct TextureID { size_t value; };
+struct TileMapID { size_t value; };
 
 // TODO: figure out a way to load/unload textures here
-struct Texture {
-    GLuint glID;
-    bool isValid;
-};
 
 class AssetManager {
     public:
         AssetManager();
+        ~AssetManager();
 
         ShaderID loadShader(std::string vPath, std::string fPath);
+        void unloadShader(ShaderID id);
+
         TextureID loadTexture(std::string tPath);
+        void unloadTexture(TextureID id);
+
+        TileMapID loadTileMap(std::string tmPath);
+        void unloadTileMap(TileMapID id);
 
     private:
+        std::vector<Shader> shaders;
+        std::queue<unsigned int> shaderSlots;
+
         std::vector<Texture> textures;
-        std::vector<unsigned int> textureSlots;
+        std::queue<unsigned int> textureSlots;
+
+        std::vector<TileMap> tilemaps;
+        std::queue<unsigned int> tilemapSlots;
 };
 
 }
