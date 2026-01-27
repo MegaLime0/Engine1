@@ -1,4 +1,5 @@
 #pragma once
+
 #include <SDL3/SDL_video.h>
 #include <string>
 
@@ -20,6 +21,8 @@ class Window {
         void resize();
         void makeFullscreen();
         void makeWindowed();
+
+        void getWindowConfig();
 
         void swapBuffers();
 

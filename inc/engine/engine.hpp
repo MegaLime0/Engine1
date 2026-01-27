@@ -9,6 +9,8 @@ namespace engine {
 
 class Engine {
     public:
+        Engine();
+
     private:
         Window window;
         Renderer renderer;

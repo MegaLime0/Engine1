@@ -6,6 +6,7 @@ namespace engine {
 
 class Shader {
     public:
+        // TODO: add shader caching
         Shader(std::string vPath, std::string fPath);
         ~Shader();
 
