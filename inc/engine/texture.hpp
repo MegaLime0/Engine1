@@ -15,6 +15,7 @@ class Texture {
         bool isValid();
 
     private:
+        int _width, _height, _channel_count;
         GLuint _glID;
         bool _valid;
 };
