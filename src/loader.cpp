@@ -39,6 +39,10 @@ std::vector<unsigned char> Loader::loadImage(fs::path path, int &w, int &h, int 
 
     unsigned char *raw_data = stbi_load(path.c_str(), &w, &h, &channels, 0);
 
+    if (!raw_data) {
+        throw std::runtime_error("Couldn't load image: " + std::string(path));
+    }
+
     size_t length = w * h * channels;
     std::vector<unsigned char> data {raw_data, raw_data + length};
 
