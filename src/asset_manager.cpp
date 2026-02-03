@@ -1,6 +1,5 @@
 #include <engine/asset_manager.hpp>
 #include <engine/shader.hpp>
-#include <engine/texture.hpp>
 #include <engine/tilemap.hpp>
 
 namespace engine {
@@ -40,13 +39,13 @@ namespace engine {
         if (!textureSlots.empty()) {
             unsigned int textureIndex = textureSlots.back();
             textureSlots.pop();
-            textures.at(textureIndex) = Texture(tPath);
+            textures.at(textureIndex) = Texture2D(tPath);
 
             TextureID id = { textureIndex };
             return id;
         } else {
             unsigned int shaderIndex = shaders.size() - 1;
-            textures.at(shaderIndex) = Texture(tPath);
+            textures.at(shaderIndex) = Texture2D(tPath);
 
             TextureID id = { shaderIndex };
             return id;

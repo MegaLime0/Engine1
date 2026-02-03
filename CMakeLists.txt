@@ -11,7 +11,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-add_executable(engine src/main_temp.cpp)
+add_executable(engine 
+    src/main_temp.cpp 
+    src/glad.c
+    src/loader.cpp 
+    src/asset_manager.cpp 
+    src/shader.cpp
+    src/base_texture.cpp 
+    src/texture_2d.cpp
+)
 
 target_include_directories(engine PRIVATE inc/)
 target_include_directories(engine PRIVATE lib/)

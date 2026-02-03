@@ -1,6 +1,7 @@
 #include <engine/shader.hpp>
 #include <engine/loader.hpp>
 #include <glad/glad.h>
+#include <stdexcept>
 #include <string>
 
 namespace engine {
@@ -21,10 +22,59 @@ Shader::Shader(std::string vPath, std::string fPath) {
     glShaderSource(vertShader, 1, &vertSource, 0);
     glShaderSource(fragShader, 1, &fragSource, 0);
 
+    int status;
+    char log[256];
+
     glCompileShader(vertShader);
-    // TODO: check errors for vertex shader compilation
-    // TODO: compile fragment shader
+    glGetShaderiv(vertShader, GL_COMPILE_STATUS, &status);
+
+    if (status == 0) {
+        glGetShaderInfoLog(vertShader, sizeof(log), 0, log);
+        throw std::runtime_error("Couldn't compile vertex shader: " + std::string(log));
+    }
+    status = 0;
+
+    glCompileShader(fragShader);
+    glGetShaderiv(fragShader, GL_COMPILE_STATUS, &status);
+
+    if (status == 0) {
+        glGetShaderInfoLog(fragShader, sizeof(log), 0, log);
+        throw std::runtime_error("Couldn't compile fragment shader: " + std::string(log));
+    }
+    status = 0;
+
+    glAttachShader(_program, vertShader);
+    glAttachShader(_program, fragShader);
+
+    glLinkProgram(_program);
+    glGetProgramiv(_program, GL_LINK_STATUS, &status);
+
+    if (status == 0) {
+        glGetProgramInfoLog(_program, sizeof(log), 0, log);
+        throw std::runtime_error("Couldn't link program: " + std::string(log));
+    }
+
+    glDeleteShader(vertShader);
+    glDeleteShader(fragShader);
+
+    _valid = true;
 }
 
-
+Shader::~Shader() {
+    deleteProgram();
 }
+
+void Shader::use() {
+    glUseProgram(_program);
+}
+
+void Shader::deleteProgram() {
+    glDeleteProgram(_program);
+    _valid = false;
+}
+
+bool Shader::isValid() {
+    return _valid;
+}
+
+}   // namespace engine

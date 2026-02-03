@@ -5,7 +5,7 @@
 #include <queue>
 #include <glad/glad.h>
 #include <engine/shader.hpp>
-#include <engine/texture.hpp>
+#include <engine/texture_2d.hpp>
 #include <engine/tilemap.hpp>
 
 namespace engine {
@@ -31,10 +31,11 @@ class AssetManager {
         void unloadTileMap(TileMapID id);
 
     private:
+        // implement swap and pop
         std::vector<Shader> shaders;
         std::queue<unsigned int> shaderSlots;
 
-        std::vector<Texture> textures;
+        std::vector<Texture2D> textures;
         std::queue<unsigned int> textureSlots;
 
         std::vector<TileMap> tilemaps;

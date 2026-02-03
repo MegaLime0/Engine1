@@ -12,7 +12,7 @@ class Shader {
 
         void use();
         void deleteProgram();
-        void isValid();
+        bool isValid();
 
         // TODO: send Uniform1/2/3 etc
     private:

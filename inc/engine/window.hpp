@@ -13,12 +13,11 @@ struct WindowConfig {
 
 class Window {
     public:
-        Window();
+        Window(int width, int height, std::string title, SDL_WindowFlags flags);
         Window(WindowConfig wConf);
 
         ~Window();
 
-        void resize();
         void makeFullscreen();
         void makeWindowed();
 
@@ -27,6 +26,8 @@ class Window {
         void swapBuffers();
 
     private:
+        void updateWindowFlags();
+
         WindowConfig _wConf;
         SDL_Window* _window;
         SDL_GLContext _glContext;
