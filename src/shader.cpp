@@ -73,8 +73,4 @@ void Shader::deleteProgram() {
     _valid = false;
 }
 
-bool Shader::isValid() {
-    return _valid;
-}
-
 }   // namespace engine

@@ -1,9 +1,10 @@
 #pragma once
 
-#include <engine/base_texture.hpp>
+#include <engine/render/base_texture.hpp>
 #include <string>
 
 namespace engine {
+namespace render {
 
 class Texture2D : protected BaseTexture{
     public:
@@ -14,6 +15,5 @@ class Texture2D : protected BaseTexture{
 };
 
 
-
-
+} // namespace render
 } // namespace engine

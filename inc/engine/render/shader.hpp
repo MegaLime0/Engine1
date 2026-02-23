@@ -1,10 +1,12 @@
 #pragma once
+
+#include <engine/base_asset.hpp>
 #include <string>
 
 namespace engine {
 // Individual shader program handle
 
-class Shader {
+class Shader : protected BaseAsset {
     public:
         // TODO: add shader caching
         Shader(std::string vPath, std::string fPath);
@@ -12,12 +14,10 @@ class Shader {
 
         void use();
         void deleteProgram();
-        bool isValid();
 
         // TODO: send Uniform1/2/3 etc
     private:
         int _program;
-        bool _valid; // set by deleteProgram, returned by isValid
 };
 
 }

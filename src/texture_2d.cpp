@@ -12,7 +12,7 @@ Texture2D::Texture2D(std::string path) : BaseTexture(GL_TEXTURE_2D) {
         Loader::loadImage(path, _w, _h, _channels);
 
     if (_channels != 4) {
-        throw std::runtime_error("Image not in RGBA format: " +
+        throw std::runtime_error("Image has more/less than 4 channels: " +
                                  std::string(path));
     }
 
