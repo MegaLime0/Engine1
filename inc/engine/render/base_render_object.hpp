@@ -11,9 +11,12 @@ class BaseRenderObject {
     public:
         // bind self VAO, Texture and Shader
         virtual void bind();
+        // render self. automatically calls bind
+        virtual void render();
     protected:
         Shader shader;
-        GLuint VAO, VBO;
+        BaseTexture texture;
+        GLuint VAO;
 };
 
 

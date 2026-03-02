@@ -55,6 +55,4 @@ void Window::updateWindowFlags() {
 }
 
 
-
-
 } // namespace engine

@@ -9,9 +9,15 @@ namespace render {
 class BaseTexture : protected BaseAsset {
     public:
         BaseTexture(GLenum textureType);
-        
-        virtual void bind();
 
+        virtual ~BaseTexture();
+
+        // TODO: override this deleteTexture() method somehow
+        virtual void deleteTexture();
+
+        void bind();
+
+        // TODO: move these to private
         GLuint _glID;
         GLenum _glTexType;
         int _w, _h, _channels;

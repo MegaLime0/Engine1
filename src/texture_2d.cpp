@@ -1,11 +1,12 @@
-#include "engine/texture_2d.hpp"
-#include "engine/base_texture.hpp"
+#include <engine/render/texture_2d.hpp>
+#include <engine/render/base_texture.hpp>
 #include <engine/loader.hpp>
 #include <glad/glad.h>
 #include <string>
 #include <vector>
 
 namespace engine {
+namespace render {
 
 Texture2D::Texture2D(std::string path) : BaseTexture(GL_TEXTURE_2D) {
     std::vector<unsigned char> image_data =
@@ -30,13 +31,15 @@ Texture2D::Texture2D(std::string path) : BaseTexture(GL_TEXTURE_2D) {
     _valid = true;
 };
 
-Texture2D::~Texture2D() {
-    deleteTexture();
-}
-
 void Texture2D::deleteTexture() {
     glDeleteTextures(1, &_glID);
     _valid = false;
 }
 
+// TODO: fix this deleting logic
+Texture2D::~Texture2D() {
+    this->deleteTexture();
+}
+
+} // namespace render
 } // namespace engine
