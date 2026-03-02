@@ -11,10 +11,13 @@ class Engine {
     public:
         Engine();
 
+        void update();
     private:
         Window window;
         Renderer renderer;
         Input input;
+
+        Event _current;
 };
 
 }

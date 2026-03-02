@@ -6,6 +6,8 @@
 
 namespace engine {
 
+using Event = SDL_Event;
+
 struct WindowConfig {
     int width, height;
     std::string title;
@@ -25,6 +27,8 @@ class Window {
         void getWindowConfig();
 
         void swapBuffers();
+
+        bool pollEvents(Event &event);
 
     private:
         void updateWindowFlags();

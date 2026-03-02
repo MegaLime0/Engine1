@@ -54,5 +54,8 @@ void Window::updateWindowFlags() {
     _wConf.flags = SDL_GetWindowFlags(_window);
 }
 
+bool Window::pollEvents(Event &event) {
+    return SDL_PollEvent(&event);
+}
 
 } // namespace engine

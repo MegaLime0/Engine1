@@ -8,14 +8,30 @@ namespace engine {
 // Should use buffering
 using Event = SDL_Event;
 
+struct Actions {
+    // KeysPressed
+};
+
+// TODO: properly implement input class
 class Input {
     public:
         Input(Window &window);
         ~Input();
 
-        void pollEvents(Event &event);
+        void processKeyboard(Event &event);
+
+        void processMouseButton(Event &event);
+        void processMouseWheel(Event &event);
+        void processMouseMotion(Event &event);
+
+        void processGamepadButton(Event &event);
+        void processGamepadAxis(Event &event);
+
     private:
-        // Input Key Buffer
+        // store MousePos
+        // Input Buffer
+
+        // Merge inputs together into one "block"
 };
 
-}
+} // namespace engine
