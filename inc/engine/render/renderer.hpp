@@ -3,7 +3,6 @@
 
 namespace engine {
 
-// Self Explanatory
 
 class Renderer {
     public:
@@ -11,4 +10,5 @@ class Renderer {
     private:
 };
 
-}
+
+} // namespace engine

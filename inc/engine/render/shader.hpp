@@ -4,6 +4,7 @@
 #include <string>
 
 namespace engine {
+namespace render {
 // Individual shader program handle
 
 class Shader : protected BaseAsset {
@@ -20,4 +21,5 @@ class Shader : protected BaseAsset {
         int _program;
 };
 
-}
+} // namespace render
+} // namespace engine

@@ -5,6 +5,7 @@
 namespace engine {
 
 // Handles input/events or smething
+// Should use buffering
 using Event = SDL_Event;
 
 class Input {
