@@ -10,8 +10,6 @@ class BaseTexture : protected BaseAsset {
     public:
         BaseTexture(GLenum textureType);
 
-        virtual ~BaseTexture();
-
         // TODO: override this deleteTexture() method somehow
         virtual void deleteTexture();
 

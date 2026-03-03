@@ -38,7 +38,10 @@ void Texture2D::deleteTexture() {
 
 // TODO: fix this deleting logic
 Texture2D::~Texture2D() {
-    this->deleteTexture();
+    if (_valid) {
+        glDeleteTextures(1, &_glID);
+        _valid = false;
+    }
 }
 
 } // namespace render

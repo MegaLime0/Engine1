@@ -6,10 +6,9 @@
 
 namespace engine {
 
-class AssetManager {
-    public:
-        AssetContainer<render::Shader> shaders;
-        AssetContainer<render::BaseTexture> textures;
+struct AssetManager {
+    AssetContainer<render::Shader> shaders;
+    AssetContainer<render::BaseTexture> textures;
 };
 
 } // namespace engine
