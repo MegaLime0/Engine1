@@ -10,7 +10,7 @@ namespace render {
 
 class BaseRenderObject {
     public:
-        BaseRenderObject(Shader shader, BaseTexture texture, GLuint VAO);
+        BaseRenderObject(Shader shader, std::vector<BaseTexture> textures, GLuint VAO, RenderData data);
         // bind self VAO, Texture and Shader
         virtual void bind();
         // render self. automatically calls bind
@@ -18,7 +18,7 @@ class BaseRenderObject {
 
     protected:
         Shader shader;
-        BaseTexture texture;
+        std::vector<BaseTexture> textures;
         GLuint VAO;
         RenderData data;
 };
