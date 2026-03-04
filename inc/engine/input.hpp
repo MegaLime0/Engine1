@@ -1,11 +1,15 @@
 #pragma once
 
+#include <SDL3/SDL_keycode.h>
+#include <SDL3/SDL_scancode.h>
 #include <engine/math/vector2d.hpp>
+#include <engine/input/input_enums.hpp>
 #include <engine/window.hpp>
 #include <SDL3/SDL_events.h>
 #include <map>
 
 namespace engine {
+namespace input {
 
 // Handles input/events or smething
 // Should use buffering
@@ -28,10 +32,13 @@ class Input {
 
     private:
         math::Vector2D _mousePos;
-        std::map<std::string, >
+        std::map<SDL_Scancode, const char*> _keyMap;
+        // TODO: make action datatype
+        std::map<const char*, const char*> _actionMap;
         // Input Buffer
 
         // Merge inputs together into one "block"
 };
 
+} // input
 } // namespace engine
