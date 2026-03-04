@@ -1,5 +1,5 @@
 #pragma once
-#include "engine/render/base_render_object.hpp"
+#include <engine/render/base_render_object.hpp>
 #include <SDL3/SDL.h>
 
 namespace engine {

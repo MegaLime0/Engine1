@@ -1,10 +1,11 @@
-#include <engine/shader.hpp>
+#include <engine/render/shader.hpp>
 #include <engine/loader.hpp>
 #include <glad/glad.h>
 #include <stdexcept>
 #include <string>
 
 namespace engine {
+namespace render {
 
 Shader::Shader(std::string vPath, std::string fPath) {
     _program = glCreateProgram();
@@ -73,4 +74,5 @@ void Shader::deleteProgram() {
     _valid = false;
 }
 
-}   // namespace engine
+} // namespace render
+} // namespace engine
