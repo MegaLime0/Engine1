@@ -2,7 +2,7 @@
 #include <SDL3/SDL.h>
 
 namespace engine {
-
+namespace render {
 
 class Renderer {
     public:
@@ -11,4 +11,5 @@ class Renderer {
 };
 
 
+} // namespace render
 } // namespace engine

@@ -6,7 +6,7 @@
 namespace engine {
 namespace render {
 
-class Texture2D : protected BaseTexture{
+class Texture2D : protected BaseTexture {
     public:
         Texture2D(std::string path);
         ~Texture2D();

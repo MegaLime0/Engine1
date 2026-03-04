@@ -3,9 +3,9 @@
 #include <engine/math/vector2d.hpp>
 #include <engine/window.hpp>
 #include <SDL3/SDL_events.h>
-#include <map>
 
 namespace engine {
+namespace input {
 
 // Handles input/events or smething
 // Should use buffering
@@ -28,10 +28,12 @@ class Input {
 
     private:
         math::Vector2D _mousePos;
-        std::map<std::string, >
+        // TODO: use hashmap for binding keys to enums, and
+        // another hashmap for enums to actions
         // Input Buffer
 
         // Merge inputs together into one "block"
 };
 
+} // namespace input
 } // namespace engine

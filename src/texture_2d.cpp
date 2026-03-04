@@ -20,6 +20,7 @@ Texture2D::Texture2D(std::string path) : BaseTexture(GL_TEXTURE_2D) {
     glGenTextures(1, &_glID);
     glBindTexture(_glTexType, _glID);
 
+    // TODO: configurable texture parameters
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);

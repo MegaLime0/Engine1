@@ -49,6 +49,7 @@ void AssetContainer<T>::remove(std::size_t asset_index) {
     }
 
     free_slots.push_back(asset_index);
+    // TODO: asset isn't being invalidated
 }
 
 };
