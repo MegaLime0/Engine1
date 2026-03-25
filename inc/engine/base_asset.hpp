@@ -3,9 +3,11 @@
 namespace engine {
 
 class BaseAsset {
-    protected: 
+    public:
+        void invalidate() { _valid = false; }
+
+    protected:
         bool _valid;
 };
-
 
 } // namespace engine

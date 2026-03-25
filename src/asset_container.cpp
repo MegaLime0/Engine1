@@ -4,13 +4,11 @@
 
 namespace engine {
 
-template<typename T>
-AssetContainer<T>::AssetContainer() : assets(), free_slots() {
+AssetContainer::AssetContainer() : assets(), free_slots() {
     // TODO: implement assetContainer constructor
 }
 
-template<typename T>
-std::size_t AssetContainer<T>::add(T asset) {
+std::size_t AssetContainer::add(BaseAsset asset) {
     std::size_t asset_index;
     if (free_slots.size() != 0 ) {
         asset_index = free_slots.back();
@@ -25,8 +23,7 @@ std::size_t AssetContainer<T>::add(T asset) {
     return asset_index;
 }
 
-template<typename T>
-T AssetContainer<T>::get(std::size_t asset_index) {
+BaseAsset AssetContainer::get(std::size_t asset_index) {
     if (asset_index >= assets.size()) {
         throw std::runtime_error(
                 "Asset index out of bounds: " 
@@ -38,8 +35,7 @@ T AssetContainer<T>::get(std::size_t asset_index) {
     return assets[asset_index];
 }
 
-template<typename T>
-void AssetContainer<T>::remove(std::size_t asset_index) {
+void AssetContainer::remove(std::size_t asset_index) {
     if (asset_index >= assets.size()) {
         throw std::runtime_error(
                 "Asset index out of bounds: " 
@@ -49,7 +45,7 @@ void AssetContainer<T>::remove(std::size_t asset_index) {
     }
 
     free_slots.push_back(asset_index);
-    // TODO: asset isn't being invalidated
+    assets[asset_index].invalidate();
 }
 
 };

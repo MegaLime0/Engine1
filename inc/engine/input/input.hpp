@@ -10,6 +10,7 @@
 #include <SDL3/SDL_events.h>
 #include <map>
 #include <queue>
+#include <vector>
 
 namespace engine {
 namespace input {
@@ -17,6 +18,7 @@ namespace input {
 // Handles input/events or smething
 // Should use buffering
 using Event = SDL_Event;
+using Action = const char*;
 
 // TODO: properly implement input class
 class Input {
@@ -33,13 +35,19 @@ class Input {
         void processGamepadButton(Event &event);
         void processGamepadAxis(Event &event);
 
+        void bindAction(Action action, SDL_Scancode keycode);
+        void unbindAction(Action action);
+
+        // take inputActionMap and swap keys and values
+        void buildActionMap();
+
     private:
         math::Vector2D _mousePos;
 
-        std::map<SDL_Scancode, const char*> inputMap;
-        std::map<const char*, const char*> actionMap;
+        std::map<Action, std::vector<SDL_Scancode>> inputActionMap;
+        std::map<SDL_Scancode, Action> inputLookup;
+        // created by buildActionMap()
         // TODO: implement queue
-        std::queue<int> inputQueue;
         // TODO: use hashmap for binding keys to enums, and
         // another hashmap for enums to actions
         // Input Buffer
