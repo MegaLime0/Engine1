@@ -15,7 +15,8 @@ namespace input {
 // Should use buffering
 using Event = SDL_Event;
 
-// TODO: properly implement input class
+// TODO: properly implement input class, possibly using an event system
+// Subscribe to actions ("jump, crouch") get called when button mapped to those gets pressed
 class Input {
     public:
         Input(Window &window);

@@ -9,12 +9,13 @@ namespace render {
 
 class Shader : protected BaseAsset {
     public:
-        // TODO: add shader caching
         Shader(std::string vPath, std::string fPath);
         ~Shader();
 
         void use();
         void deleteProgram();
+
+        void cache(std::string path, std::string name);
 
         // TODO: send Uniform1/2/3 etc
     private:

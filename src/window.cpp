@@ -44,10 +44,12 @@ Window::~Window() {
 
 void Window::makeFullscreen() {
     SDL_SetWindowFullscreen(_window, true);
+    SDL_SyncWindow(_window);
 }
 
 void Window::makeWindowed() {
     SDL_SetWindowFullscreen(_window, false);
+    SDL_SyncWindow(_window);
 }
 
 void Window::updateWindowFlags() {

@@ -5,7 +5,8 @@
 namespace engine {
 
 AssetContainer::AssetContainer() : assets(), free_slots() {
-    // TODO: implement assetContainer constructor
+    assets.reserve(20);
+    free_slots.reserve(10);
 }
 
 std::size_t AssetContainer::add(BaseAsset asset) {

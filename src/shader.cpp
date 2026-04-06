@@ -74,5 +74,10 @@ void Shader::deleteProgram() {
     _valid = false;
 }
 
+// TODO: implement shader cacheing
+void Shader::cache(std::string path, std::string name) {
+
+}
+
 } // namespace render
 } // namespace engine

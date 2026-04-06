@@ -9,8 +9,10 @@ namespace render {
 
 class Quad : BaseRenderObject {
     public:
+        Quad(const Quad &other);
         Quad(Shader shader, Texture2D texture, RenderData data);
         Quad(Shader shader, Texture2D texture, RenderData data, GLenum draw);
+
         void bind();
         void render();
 

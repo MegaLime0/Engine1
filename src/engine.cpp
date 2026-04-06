@@ -5,8 +5,8 @@
 namespace engine {
 
 Engine::Engine()
-    :   window(400, 800, "Test", SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE),
-        input(window) 
+    :   window(1280, 720, "Test", SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE),
+        input(window), renderer(1280, 720)
 {
 
 }
@@ -16,13 +16,9 @@ void Engine::update() {
         switch (_current.type) {
             // Window events
             case SDL_EventType::SDL_EVENT_WINDOW_RESIZED:
-                // TODO: Update renderer on resize
-                break;
             case SDL_EventType::SDL_EVENT_WINDOW_ENTER_FULLSCREEN:
-                // TODO: Update renderer on fullscreen
-                break;
             case SDL_EventType::SDL_EVENT_WINDOW_LEAVE_FULLSCREEN:
-                //TODO: Update renderer on exit fullscreen
+                renderer.resizeViewport(_current.window.data1, _current.window.data2);
                 break;
             // Input events
             case SDL_EventType::SDL_EVENT_KEY_DOWN:

@@ -1,12 +1,19 @@
 #pragma once
-#include <SDL3/SDL.h>
+
+#include <engine/render/base_render_object.hpp>
 
 namespace engine {
 namespace render {
 
 class Renderer {
     public:
-        Renderer();
+        Renderer(int width, int height);
+
+        void render(BaseRenderObject object);
+
+        void resizeViewport(int width, int height);
+
+
     private:
 };
 

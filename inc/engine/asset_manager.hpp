@@ -7,8 +7,8 @@
 namespace engine {
 
 struct AssetManager {
-    AssetContainer<render::Shader> shaders;
-    AssetContainer<render::BaseTexture> textures;
+    AssetContainer shaders;
+    AssetContainer textures;
 };
 
 } // namespace engine

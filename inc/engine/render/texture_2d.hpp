@@ -12,6 +12,10 @@ class Texture2D : public BaseTexture {
         ~Texture2D();
 
         void deleteTexture();
+
+        void setTextureParameter(GLenum glType, GLenum glValue);
+        void setFiltering(GLenum glFiltering);
+        void setWrap(GLenum glWrap);
 };
 
 

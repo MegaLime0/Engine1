@@ -10,12 +10,11 @@ class BaseTexture : protected BaseAsset {
     public:
         BaseTexture(GLenum textureType);
 
-        // TODO: override this deleteTexture() method somehow
         virtual void deleteTexture();
 
         void bind();
 
-        // TODO: move these to private
+    protected:
         GLuint _glID;
         GLenum _glTexType;
         int _w, _h, _channels;

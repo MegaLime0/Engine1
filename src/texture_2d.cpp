@@ -20,7 +20,6 @@ Texture2D::Texture2D(std::string path) : BaseTexture(GL_TEXTURE_2D) {
     glGenTextures(1, &_glID);
     glBindTexture(_glTexType, _glID);
 
-    // TODO: configurable texture parameters
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -37,7 +36,20 @@ void Texture2D::deleteTexture() {
     _valid = false;
 }
 
-// TODO: fix this deleting logic
+void Texture2D::setTextureParameter(GLenum glType, GLenum glValue) {
+    glTexParameteri(GL_TEXTURE_2D, glType, glValue);
+}
+
+void Texture2D::setFiltering(GLenum glFiltering) {
+    setTextureParameter(GL_TEXTURE_MIN_FILTER, glFiltering);
+    setTextureParameter(GL_TEXTURE_MAG_FILTER, glFiltering);
+}
+
+void Texture2D::setWrap(GLenum glWrap) {
+    setTextureParameter(GL_TEXTURE_WRAP_S, glWrap);
+    setTextureParameter(GL_TEXTURE_WRAP_T, glWrap);
+}
+
 Texture2D::~Texture2D() {
     if (_valid) {
         glDeleteTextures(1, &_glID);

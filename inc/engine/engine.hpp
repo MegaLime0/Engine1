@@ -2,7 +2,7 @@
 #include "engine/asset_manager.hpp"
 #include <engine/window.hpp>
 #include <engine/input.hpp>
-#include <engine/renderer.hpp>
+#include <engine/render/renderer.hpp>
 
 // Main entrypoint to engine
 
@@ -15,8 +15,8 @@ class Engine {
         void update();
     private:
         Window window;
-        Renderer renderer;
-        Input input;
+        render::Renderer renderer;
+        input::Input input;
         AssetManager assets;
 
         Event _current;
