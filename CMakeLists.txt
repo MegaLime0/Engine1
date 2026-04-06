@@ -14,7 +14,9 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 add_executable(engine 
     src/main_temp.cpp 
     src/glad.c
+    src/window.cpp
     src/loader.cpp 
+    src/asset_container.cpp
     src/asset_manager.cpp 
     src/shader.cpp
     src/base_texture.cpp 
@@ -24,4 +26,5 @@ add_executable(engine
 target_include_directories(engine PRIVATE inc/)
 target_include_directories(engine PRIVATE lib/)
 
-target_link_libraries(engine PRIVATE SDL3)
+add_subdirectory(extern/SDL)
+target_link_libraries(engine PUBLIC SDL3)

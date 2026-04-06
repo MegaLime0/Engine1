@@ -10,7 +10,7 @@ class BaseTexture : protected BaseAsset {
     public:
         BaseTexture(GLenum textureType);
 
-        virtual void deleteTexture();
+        virtual void deleteTexture() = 0;
 
         void bind();
 
