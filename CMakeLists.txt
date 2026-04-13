@@ -23,8 +23,9 @@ add_executable(engine
     src/texture_2d.cpp
 )
 
-target_include_directories(engine PRIVATE inc/)
-target_include_directories(engine PRIVATE lib/)
+target_include_directories(engine BEFORE PRIVATE inc/)
+target_include_directories(engine BEFORE PRIVATE lib/)
 
-add_subdirectory(extern/SDL)
-target_link_libraries(engine PUBLIC SDL3)
+# for using the /extern SDL library
+# add_subdirectory(extern/SDL) 
+target_link_libraries(engine PRIVATE SDL3)
