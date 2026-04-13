@@ -10,6 +10,7 @@ int main() {
     engine::AssetManager am;
     engine::Window window(800, 600, "Temp", SDL_WINDOW_OPENGL);
 
+
     SDL_Event events;
     window.pollEvents(events);
 

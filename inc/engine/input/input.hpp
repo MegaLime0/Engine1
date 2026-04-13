@@ -1,15 +1,14 @@
 #pragma once
 
-
-
+#include "engine/input/input_enums.hpp"
 #include <SDL3/SDL_keycode.h>
 #include <SDL3/SDL_oldnames.h>
 #include <SDL3/SDL_scancode.h>
 #include <engine/math/vector2d.hpp>
 #include <engine/window.hpp>
 #include <SDL3/SDL_events.h>
-#include <map>
-#include <queue>
+#include <string>
+#include <unordered_map>
 #include <vector>
 
 namespace engine {
@@ -18,12 +17,15 @@ namespace input {
 // Handles input/events or smething
 // Should use buffering
 using Event = SDL_Event;
-using Action = const char*;
+using Action = std::string;
+using Callback = void (*)(float);
+
+// TODO: implement input deadzone
 
 // TODO: properly implement input class
 class Input {
     public:
-        Input(Window &window);
+        Input();
         ~Input();
 
         void processKeyboard(Event &event);
@@ -35,24 +37,19 @@ class Input {
         void processGamepadButton(Event &event);
         void processGamepadAxis(Event &event);
 
-        void bindAction(Action action, SDL_Scancode keycode);
-        void unbindAction(Action action);
+        void bindAction(Action action, KeyCodes keycode);
+        void bindActionCallback(Action action, Callback callback);
+        void unbindAction(Action action, KeyCodes keycode);
 
-        // take inputActionMap and swap keys and values
-        void buildActionMap();
+        bool isActionPressed(Action action);
+        float getActionValue(Action action);
 
     private:
-        math::Vector2D _mousePos;
-
-        std::map<Action, std::vector<SDL_Scancode>> inputActionMap;
-        std::map<SDL_Scancode, Action> inputLookup;
-        // created by buildActionMap()
-        // TODO: implement queue
-        // TODO: use hashmap for binding keys to enums, and
-        // another hashmap for enums to actions
-        // Input Buffer
-
-        // Merge inputs together into one "block"
+        std::unordered_map<Action, float> ActionFrame;
+        // Keycode to action
+        std::unordered_map<KeyCodes, std::vector<Action>> KeyActionMap;
+        // Action to callback function
+        std::unordered_map<Action, std::vector<Callback>> ActionMap;
 };
 
 } // namespace input
