@@ -100,7 +100,7 @@ enum KeyCodes {
     GP_PADDLE1,
     GP_PADDLE2,
 
-    //Controller Axies 
+    // Controller Axies 
     GP_STICK_LEFT_X,
     GP_STICK_LEFT_Y,
     GP_STICK_RIGHT_X,
@@ -108,6 +108,8 @@ enum KeyCodes {
     GP_TRIGGER_LEFT,
     GP_TRIGGER_RIGHT,
 
+    // Edge case
+    _INVALID,
     // used for getting enum element count
     __LAST,
 };

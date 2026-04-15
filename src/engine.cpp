@@ -1,4 +1,4 @@
-#include "engine/input.hpp"
+#include "engine/input/input.hpp"
 #include "engine/window.hpp"
 #include <engine/engine.hpp>
 

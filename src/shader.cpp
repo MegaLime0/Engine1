@@ -1,6 +1,6 @@
 #include <engine/render/shader.hpp>
 #include <engine/loader.hpp>
-#include <glad/glad.h>
+#include <iterator>
 #include <stdexcept>
 #include <string>
 
@@ -77,6 +77,35 @@ void Shader::deleteProgram() {
 // TODO: implement shader cacheing
 void Shader::cache(std::string path, std::string name) {
 
+}
+
+GLint Shader::getUniformLocation(std::string uniform) {
+    // find uniform location, if not cached, cache it
+    std::unordered_map<std::string, GLint>::iterator target = uniformCacheMap.find(uniform);
+    if (target == uniformCacheMap.end()) {
+        GLint location = glGetUniformLocation(_program, uniform.c_str());
+        uniformCacheMap.emplace(uniform, location);
+        return location;
+    } else {
+        return target->second;
+    }
+}
+
+// TODO: complete uniform sets
+void Shader::setUniform1(std::string uniform, float x1) {
+    GLint location = getUniformLocation(uniform);
+    glUniform1f(location, x1);
+}
+
+void Shader::setUniform2(std::string uniform, float x1, float x2) {
+    GLint location = getUniformLocation(uniform);
+    glUniform2f(location, x1, x2);
+
+}
+
+void Shader::setUniform3(std::string uniform, float x1, float x2, float x3) {
+    GLint location = getUniformLocation(uniform);
+    glUniform3f(location, x1, x2, x3);
 }
 
 } // namespace render

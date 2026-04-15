@@ -19,6 +19,12 @@ namespace input {
 using Event = SDL_Event;
 using Action = std::string;
 using Callback = void (*)(float);
+using Deadzone = float;
+
+struct ActionInfo {
+    Deadzone deadzone;
+    std::vector<Callback> callbacks;
+};
 
 // TODO: implement input deadzone
 
@@ -37,7 +43,7 @@ class Input {
         void processGamepadButton(Event &event);
         void processGamepadAxis(Event &event);
 
-        void bindAction(Action action, KeyCodes keycode);
+        void bindAction(Action action, KeyCodes keycode, Deadzone deadzone = 0.1f);
         void bindActionCallback(Action action, Callback callback);
         void unbindAction(Action action, KeyCodes keycode);
 
@@ -45,11 +51,12 @@ class Input {
         float getActionValue(Action action);
 
     private:
+        // Input accumulated here each frame
         std::unordered_map<Action, float> ActionFrame;
         // Keycode to action
         std::unordered_map<KeyCodes, std::vector<Action>> KeyActionMap;
-        // Action to callback function
-        std::unordered_map<Action, std::vector<Callback>> ActionMap;
+        // Action to callbacks and deadzone
+        std::unordered_map<Action, ActionInfo> ActionMap;
 };
 
 } // namespace input
