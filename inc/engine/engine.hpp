@@ -1,7 +1,7 @@
 #pragma once
 #include "engine/asset_manager.hpp"
 #include <engine/window.hpp>
-#include <engine/input.hpp>
+#include <engine/input/input.hpp>
 #include <engine/render/renderer.hpp>
 
 // Main entrypoint to engine
