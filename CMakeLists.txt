@@ -21,6 +21,11 @@ add_executable(engine
     src/shader.cpp
     src/base_texture.cpp 
     src/texture_2d.cpp
+    src/engine.cpp
+    src/render/renderer.cpp
+    src/render/quad.cpp
+    src/render/base_render_object.cpp
+    src/input.cpp
 )
 
 target_include_directories(engine BEFORE PRIVATE inc/)

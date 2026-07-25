@@ -11,7 +11,7 @@ namespace engine {
 namespace render {
 
 Quad::Quad(Shader shader, Texture2D texture, RenderData data)
-    : BaseRenderObject(shader, {std::make_unique<Texture2D>(texture)}, data) {
+    : BaseRenderObject(shader, std::make_unique<Texture2D>(texture), data) {
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
     glGenBuffers(1, &EBO);
@@ -31,7 +31,7 @@ Quad::Quad(Shader shader, Texture2D texture, RenderData data)
 }
 
 Quad::Quad(Shader shader, Texture2D texture, RenderData data, GLenum draw)
-    : BaseRenderObject(shader, {std::make_unique<Texture2D>(texture)}, data) {
+    : BaseRenderObject(shader, std::make_unique<Texture2D>(texture), data) {
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
     glGenBuffers(1, &EBO);

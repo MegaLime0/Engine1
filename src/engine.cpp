@@ -1,17 +1,19 @@
 #include "engine/input/input.hpp"
 #include "engine/window.hpp"
 #include <engine/engine.hpp>
+#include <iostream>
 
 namespace engine {
 
 Engine::Engine()
     :   window(1280, 720, "Test", SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE),
-        input(window), renderer(1280, 720)
+        renderer(1280, 720)
 {
-
+    std::cout << "Engine Constructor End" << std::endl;
 }
 
 void Engine::update() {
+    std::cout << "In Update" << std::endl;
     while (window.pollEvents(_current)) {
         switch (_current.type) {
             // Window events

@@ -12,6 +12,7 @@ namespace render {
 class BaseRenderObject {
     public:
         BaseRenderObject(Shader shader, std::vector<std::unique_ptr<BaseTexture>> textures, RenderData data);
+        BaseRenderObject(Shader shader, std::unique_ptr<BaseTexture> texture, RenderData data);
         virtual ~BaseRenderObject() {}
         // bind self VAO, Texture and Shader
         virtual void bind() = 0;

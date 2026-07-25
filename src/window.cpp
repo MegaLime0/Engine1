@@ -1,12 +1,16 @@
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_init.h>
 #include <SDL3/SDL_video.h>
+#include <glad/glad.h>
 #include <engine/window.hpp>
+#include <iostream>
 #include <stdexcept>
 
 namespace engine {
 
 Window::Window(WindowConfig config) {
+    std::cout << "Window Constructor Start" << std::endl;
+
     if (!SDL_Init(SDL_INIT_VIDEO)) {
         throw std::runtime_error("Couldn't initialize video");
     }
@@ -31,6 +35,12 @@ Window::Window(WindowConfig config) {
     if (!_glContext) {
         throw std::runtime_error("Couldn't create GL context");
     }
+
+    if (!gladLoadGLLoader((GLADloadproc) SDL_GL_GetProcAddress)) {
+        throw std::runtime_error("Couldn't get GL proc address");
+    }
+
+    std::cout << "Window Constructor End" << std::endl;
 }
 
 Window::Window(int width, int height, std::string title, SDL_WindowFlags flags) {

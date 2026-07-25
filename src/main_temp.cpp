@@ -1,5 +1,4 @@
-#include "engine/asset_manager.hpp"
-#include "engine/window.hpp"
+#include <engine/engine.hpp>
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_video.h>
 #include <glad/glad.h>
@@ -7,12 +6,15 @@
 
 int main() {
 
-    engine::AssetManager am;
-    engine::Window window(800, 600, "Temp", SDL_WINDOW_OPENGL);
+    engine::Engine game;
 
+    // engine::AssetManager am;
+    // engine::Window window(800, 600, "Temp", SDL_WINDOW_OPENGL);
 
-    SDL_Event events;
-    window.pollEvents(events);
+    while (true) {
+        game.update();
+    }
+
 
     std::cout << "Hello World!" << std::endl;
 }
