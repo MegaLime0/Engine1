@@ -4,12 +4,11 @@
 namespace engine {
 namespace render {
 
-BaseRenderObject::BaseRenderObject(Shader shader,
-                                   std::vector<BaseTexture> textures,
-                                   RenderData data)
-    : shader(shader), textures(textures) 
+BaseRenderObject::BaseRenderObject(Shader shader, std::vector<std::unique_ptr<BaseTexture>> textures, RenderData data)
+    :   shader(shader), 
+        textures(textures),
+        data(data)
 {
-    this->data = data;
 }
 
 } // namespace render

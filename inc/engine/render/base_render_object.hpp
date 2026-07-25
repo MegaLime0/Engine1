@@ -4,21 +4,24 @@
 #include <engine/render/shader.hpp>
 #include <engine/render/base_texture.hpp>
 #include <glad/glad.h>
+#include <memory>
 
 namespace engine {
 namespace render {
 
 class BaseRenderObject {
     public:
-        BaseRenderObject(Shader shader, std::vector<BaseTexture> textures, RenderData data);
+        BaseRenderObject(Shader shader, std::vector<std::unique_ptr<BaseTexture>> textures, RenderData data);
+        virtual ~BaseRenderObject() {}
         // bind self VAO, Texture and Shader
-        virtual void bind();
+        virtual void bind() = 0;
         // render self. automatically calls bind
-        virtual void render();
+        virtual void render() = 0;
+
 
     protected:
         Shader shader;
-        std::vector<BaseTexture> textures;
+        std::vector<std::unique_ptr<BaseTexture>> textures;
         RenderData data;
 };
 
