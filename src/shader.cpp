@@ -1,23 +1,22 @@
 #include <engine/render/shader.hpp>
 #include <engine/loader.hpp>
-#include <iterator>
 #include <stdexcept>
 #include <string>
 
-namespace engine {
-namespace render {
+namespace Engine {
+namespace Render {
 
-Shader::Shader(std::string vPath, std::string fPath) {
+Shader::Shader(const std::string& shaderPath) {
     _program = glCreateProgram();
 
     int vertShader, fragShader;
     vertShader = glCreateShader(GL_VERTEX_SHADER);
     fragShader = glCreateShader(GL_FRAGMENT_SHADER);
 
-    std::string vertString = Loader::loadText(vPath);
+    std::string vertString = Loader::loadText(shaderPath + ".vert");
     const char* vertSource = vertString.c_str();
 
-    std::string fragString = Loader::loadText(fPath);
+    std::string fragString = Loader::loadText(shaderPath + ".frag");
     const char* fragSource = fragString.c_str();
 
     glShaderSource(vertShader, 1, &vertSource, 0);
@@ -58,7 +57,6 @@ Shader::Shader(std::string vPath, std::string fPath) {
     glDeleteShader(vertShader);
     glDeleteShader(fragShader);
 
-    _valid = true;
 }
 
 Shader::~Shader() {
@@ -71,7 +69,6 @@ void Shader::use() {
 
 void Shader::deleteProgram() {
     glDeleteProgram(_program);
-    _valid = false;
 }
 
 // TODO: implement shader cacheing
@@ -81,10 +78,10 @@ void Shader::cache(std::string path, std::string name) {
 
 GLint Shader::getUniformLocation(std::string uniform) {
     // find uniform location, if not cached, cache it
-    std::unordered_map<std::string, GLint>::iterator target = uniformCacheMap.find(uniform);
-    if (target == uniformCacheMap.end()) {
+    std::unordered_map<std::string, GLint>::iterator target = uniformCache.find(uniform);
+    if (target == uniformCache.end()) {
         GLint location = glGetUniformLocation(_program, uniform.c_str());
-        uniformCacheMap.emplace(uniform, location);
+        uniformCache.emplace(uniform, location);
         return location;
     } else {
         return target->second;

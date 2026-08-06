@@ -6,7 +6,7 @@
 
 int main() {
 
-    engine::Engine game;
+    Engine::Engine game;
 
     // engine::AssetManager am;
     // engine::Window window(800, 600, "Temp", SDL_WINDOW_OPENGL);

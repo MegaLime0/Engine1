@@ -3,7 +3,7 @@
 #include <vector>
 
 namespace fs = std::filesystem;
-namespace engine {
+namespace Engine {
 // Deals with IO operations (filesystem)
 
 

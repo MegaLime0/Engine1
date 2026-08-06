@@ -6,7 +6,7 @@
 #include <iostream>
 #include <stdexcept>
 
-namespace engine {
+namespace Engine {
 
 Window::Window(WindowConfig config) {
     std::cout << "Window Constructor Start" << std::endl;

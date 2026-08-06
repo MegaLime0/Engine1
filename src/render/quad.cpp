@@ -1,14 +1,10 @@
-#include <engine/render/base_render_object.hpp>
-#include <engine/render/base_texture.hpp>
-#include <engine/render/quad.hpp>
 #include <engine/render/render_data.hpp>
 #include <engine/render/shader.hpp>
 #include <engine/render/texture_2d.hpp>
 #include <glad/glad.h>
-#include <vector>
 
-namespace engine {
-namespace render {
+namespace Engine {
+namespace Render {
 
 Quad::Quad(Shader shader, Texture2D texture, RenderData data)
     : BaseRenderObject(shader, std::make_unique<Texture2D>(texture), data) {

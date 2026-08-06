@@ -1,9 +1,8 @@
-#include "engine/render/base_texture.hpp"
 #include <engine/render/renderer.hpp>
 #include <iostream>
 
-namespace engine {
-namespace render {
+namespace Engine {
+namespace Render {
 
 // TODO: Construct renderer
 Renderer::Renderer(int width, int height) {

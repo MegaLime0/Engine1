@@ -1,7 +1,7 @@
 #include <engine/render/base_texture.hpp>
 
-namespace engine {
-namespace render {
+namespace Engine {
+namespace Render {
 
 BaseTexture::BaseTexture(GLenum textureType) {
     _glTexType = textureType;

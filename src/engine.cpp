@@ -3,7 +3,7 @@
 #include <engine/engine.hpp>
 #include <iostream>
 
-namespace engine {
+namespace Engine {
 
 Engine::Engine()
     :   window(1280, 720, "Test", SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE),

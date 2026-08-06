@@ -6,7 +6,7 @@ project(Engine
     LANGUAGES C CXX
 )
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -25,7 +25,7 @@ add_executable(engine
     src/render/renderer.cpp
     src/render/quad.cpp
     src/render/base_render_object.cpp
-    src/input.cpp
+    src/input/input.cpp
 )
 
 target_include_directories(engine BEFORE PRIVATE inc/)

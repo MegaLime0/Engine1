@@ -1,4 +1,5 @@
 #pragma once
+
 #include "engine/asset_manager.hpp"
 #include <engine/window.hpp>
 #include <engine/input/input.hpp>
@@ -6,7 +7,7 @@
 
 // Main entrypoint to engine
 
-namespace engine {
+namespace Engine {
 
 class Engine {
     public:

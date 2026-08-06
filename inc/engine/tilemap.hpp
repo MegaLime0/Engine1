@@ -3,7 +3,7 @@
 #include <glad/glad.h>
 
 // TODO: implement TileMap class
-namespace engine {
+namespace Engine {
 
 class TileMap {
     public:

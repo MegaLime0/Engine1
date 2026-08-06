@@ -4,7 +4,7 @@
 #include <SDL3/SDL_events.h>
 #include <string>
 
-namespace engine {
+namespace Engine {
 
 using Event = SDL_Event;
 

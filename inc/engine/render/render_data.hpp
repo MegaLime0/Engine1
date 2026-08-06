@@ -1,8 +1,9 @@
 #pragma once
 
 #include <vector>
-namespace engine {
-namespace render {
+
+namespace Engine {
+namespace Render {
 
 struct RenderData {
     std::vector<float> vertices; 
@@ -11,5 +12,5 @@ struct RenderData {
 };
 
 
-} // namespace render
-} // namespace engine
+} // namespace Render
+} // namespace Engine

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace engine {
+namespace Engine {
 
 class Layer {
     // TODO: implement Layer class

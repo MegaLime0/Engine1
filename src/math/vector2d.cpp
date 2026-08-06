@@ -1,8 +1,8 @@
 #include <engine/math/vector2d.hpp>
 #include <cmath>
 
-namespace engine {
-namespace math {
+namespace Engine {
+namespace Math {
 
 Vector2D::Vector2D(float x, float y) {
     this->x = x;

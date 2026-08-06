@@ -1,21 +1,31 @@
 #pragma once
 
-#include <engine/render/base_texture.hpp>
+#include "engine/math/vector2d.hpp"
 #include <string>
+#include <glad/glad.h>
+#include <engine/render/texture_parameters.hpp>
 
-namespace engine {
-namespace render {
+namespace Engine {
+namespace Render {
 
-class Texture2D : public BaseTexture {
+class Texture2D {
     public:
-        Texture2D(std::string path);
+        Texture2D(std::string path, TextureParameters::Configuration settings = {});
         ~Texture2D();
 
-        void deleteTexture();
+        GLuint getId() const { return _glID; }
+        Math::Vector2D getDimensions() const {
+            return Math::Vector2D { 
+                static_cast<float>(_width), 
+                static_cast<float>(_height)
+            };
+        }
 
-        void setTextureParameter(GLenum glType, GLenum glValue);
-        void setFiltering(GLenum glFiltering);
-        void setWrap(GLenum glWrap);
+        void setTextureParameters(TextureParameters::Configuration settings);
+
+    private:
+        GLuint _glID;
+        int _width, _height, _channels; 
 };
 
 

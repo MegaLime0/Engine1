@@ -1,7 +1,7 @@
 #pragma once
 
-namespace engine {
-namespace math {
+namespace Engine {
+namespace Math {
 
 class Vector2D {
     public:

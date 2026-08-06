@@ -5,13 +5,13 @@
 #include <glad/glad.h>
 #include <unordered_map>
 
-namespace engine {
-namespace render {
+namespace Engine {
+namespace Render {
 // Individual shader program handle
 
-class Shader : protected BaseAsset {
+class Shader {
     public:
-        Shader(std::string vPath, std::string fPath);
+        Shader(const std::string& shaderPath);
         ~Shader();
 
         void use();
@@ -28,9 +28,9 @@ class Shader : protected BaseAsset {
         GLint getUniformLocation(std::string uniform);
 
         int _program;
-        std::unordered_map<std::string, GLint> uniformCacheMap;
+        std::unordered_map<std::string, GLint> uniformCache;
 
 };
 
-} // namespace render
-} // namespace engine
+} // namespace Render
+} // namespace Engine

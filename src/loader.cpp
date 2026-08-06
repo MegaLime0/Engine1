@@ -10,7 +10,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
-namespace engine {
+namespace Engine {
 
 std::string Loader::loadText(fs::path path) {
     if (!fs::exists(path)) {
