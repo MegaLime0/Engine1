@@ -1,20 +1,23 @@
 #pragma once
 
-#include "engine/math/vector2d.hpp"
-#include "engine/math/vector3d.hpp"
+#include <engine/math/vector2d.hpp>
+#include <engine/math/vector3d.hpp>
+#include <glm/vec2.hpp>
+#include <glm/vec3.hpp>
+
 namespace Engine {
 namespace Render {
 
 struct SpriteVertex {
-    Math::Vector2D pos;
-    Math::Vector2D uv;
-    Math::Vector3D color;
+    glm::vec2 pos;
+    glm::vec2 uv;
+    glm::vec3 color;
 };
 
 struct TileVertex {
-    Math::Vector2D pos;
-    Math::Vector2D uv;
-    Math::Vector3D color;
+    glm::vec3 pos;
+    glm::vec2 uv;
+    glm::vec3 color;
     float textureIndex;
 };
 

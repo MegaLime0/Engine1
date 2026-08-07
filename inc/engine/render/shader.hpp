@@ -4,6 +4,9 @@
 #include <string>
 #include <glad/glad.h>
 #include <unordered_map>
+#include <glm/vec2.hpp>
+#include <glm/vec3.hpp>
+#include <glm/vec4.hpp>
 
 namespace Engine {
 namespace Render {
@@ -11,7 +14,7 @@ namespace Render {
 
 class Shader {
     public:
-        Shader(const std::string& shaderPath);
+        Shader(const std::string& vPath, const std::string& fPath);
         ~Shader();
 
         void use();
@@ -20,14 +23,16 @@ class Shader {
         void cache(std::string path, std::string name);
 
         // TODO: send Uniform1/2/3 etc
-        void setUniform1(std::string uniform, float x1);
-        void setUniform2(std::string uniform, float x1, float x2);
-        void setUniform3(std::string uniform, float x1, float x2, float x3);
+        void setUniform1(std::string uniform, float v);
+        void setUniform2(std::string uniform, glm::vec2 v);
+        void setUniform3(std::string uniform, glm::vec3 v);
+        void setUniform4(std::string uniform, glm::vec4 v);
+
     private:
 
         GLint getUniformLocation(std::string uniform);
 
-        int _program;
+        uint32_t _program;
         std::unordered_map<std::string, GLint> uniformCache;
 
 };

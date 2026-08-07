@@ -10,7 +10,7 @@ namespace Render {
 class Texture2DArray {
     public:
         Texture2DArray(std::string path, TextureParameters::Configuration settings = {});
-        ~Texture2DArray();
+        // ~Texture2DArray();
 
         GLuint getId() const { return _glID; }
         

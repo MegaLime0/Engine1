@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 4.1)
 project(Engine
     VERSION 0.1
     DESCRIPTION "Small Experimental Game Engine"
-    LANGUAGES C CXX
+    LANGUAGES CXX C
 )
 
 set(CMAKE_CXX_STANDARD 20)
@@ -16,21 +16,18 @@ add_executable(engine
     src/glad.c
     src/window.cpp
     src/loader.cpp 
-    src/asset_container.cpp
-    src/asset_manager.cpp 
     src/shader.cpp
-    src/base_texture.cpp 
     src/texture_2d.cpp
     src/engine.cpp
-    src/render/renderer.cpp
-    src/render/quad.cpp
-    src/render/base_render_object.cpp
-    src/input/input.cpp
+    src/render/renderer_2d.cpp
 )
 
 target_include_directories(engine BEFORE PRIVATE inc/)
 target_include_directories(engine BEFORE PRIVATE lib/)
 
-# for using the /extern SDL library
+# uncomment for using the /extern libraries
 # add_subdirectory(extern/SDL) 
+# add_subdirectory(extern/glm)
+
 target_link_libraries(engine PRIVATE SDL3)
+target_link_libraries(engine PRIVATE glm)

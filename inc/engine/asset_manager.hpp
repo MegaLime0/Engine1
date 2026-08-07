@@ -8,9 +8,10 @@
 namespace Engine {
 
 class AssetManager {
-    AssetContainer<Render::Shader> shaders;
-    AssetContainer<Render::Texture2D> texture2ds;
-    AssetContainer<Render::Texture2DArray> texture2darrays;
+    public:
+        AssetContainer<Render::Shader> shaders;
+        AssetContainer<Render::Texture2D> texture2ds;
+        AssetContainer<Render::Texture2DArray> texture2darrays;
 };
 
 } // namespace Engine

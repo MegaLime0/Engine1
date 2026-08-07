@@ -6,17 +6,17 @@
 namespace Engine {
 namespace Render {
 
-Shader::Shader(const std::string& shaderPath) {
+Shader::Shader(const std::string& vPath, const std::string& fPath) {
     _program = glCreateProgram();
 
     int vertShader, fragShader;
     vertShader = glCreateShader(GL_VERTEX_SHADER);
     fragShader = glCreateShader(GL_FRAGMENT_SHADER);
 
-    std::string vertString = Loader::loadText(shaderPath + ".vert");
+    std::string vertString = Loader::loadText(vPath);
     const char* vertSource = vertString.c_str();
 
-    std::string fragString = Loader::loadText(shaderPath + ".frag");
+    std::string fragString = Loader::loadText(fPath);
     const char* fragSource = fragString.c_str();
 
     glShaderSource(vertShader, 1, &vertSource, 0);
@@ -89,20 +89,25 @@ GLint Shader::getUniformLocation(std::string uniform) {
 }
 
 // TODO: complete uniform sets
-void Shader::setUniform1(std::string uniform, float x1) {
+void Shader::setUniform1(std::string uniform, float v) {
     GLint location = getUniformLocation(uniform);
-    glUniform1f(location, x1);
+    glUniform1f(location, v);
 }
 
-void Shader::setUniform2(std::string uniform, float x1, float x2) {
+void Shader::setUniform2(std::string uniform, glm::vec2 v) {
     GLint location = getUniformLocation(uniform);
-    glUniform2f(location, x1, x2);
+    glUniform2f(location, v.x, v.y);
 
 }
 
-void Shader::setUniform3(std::string uniform, float x1, float x2, float x3) {
+void Shader::setUniform3(std::string uniform, glm::vec3 v) {
     GLint location = getUniformLocation(uniform);
-    glUniform3f(location, x1, x2, x3);
+    glUniform3f(location, v.x, v.y, v.z);
+}
+
+void Shader::setUniform4(std::string uniform, glm::vec4 v) {
+    GLint location = getUniformLocation(uniform);
+    glUniform4f(location, v.x, v.y, v.z, v.w);
 }
 
 } // namespace render
