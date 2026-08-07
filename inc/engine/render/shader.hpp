@@ -1,6 +1,6 @@
 #pragma once
 
-#include <engine/base_asset.hpp>
+#include <glm/ext/matrix_float2x2.hpp>
 #include <string>
 #include <glad/glad.h>
 #include <unordered_map>
@@ -27,6 +27,10 @@ class Shader {
         void setUniform2(std::string uniform, glm::vec2 v);
         void setUniform3(std::string uniform, glm::vec3 v);
         void setUniform4(std::string uniform, glm::vec4 v);
+
+        void setMatrix2(std::string uniform, glm::mat2 m);
+        void setMatrix3(std::string uniform, glm::mat3 m);
+        void setMatrix4(std::string uniform, glm::mat4 m);
 
     private:
 

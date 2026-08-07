@@ -1,5 +1,6 @@
 #pragma once 
 
+#include "engine/configs.hpp"
 #include <glm/ext/matrix_float4x4.hpp>
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
@@ -11,20 +12,28 @@ namespace Render {
 
 class Camera2D {
     public:
-        Camera2D();
+        Camera2D(Config::Camera2D config, glm::vec2 screenDimensions, glm::vec2 position);
+
+        glm::vec2 getDimensions() { return dimensions; }
+        void setDimensions(glm::vec2 dimensions) { this->dimensions = dimensions; }
+
+        float getZoom() { return zoom; }
+        void changeZoom(float zoom) { this->zoom = zoom; }
+        void relativeZoom(float deltaZoom) { zoom += deltaZoom; }
 
         glm::mat4 getViewProjection();
         void setPosition(glm::vec2 newPos);
         void advancePosition(glm::vec2 direction, float magnitude);
         void advancePosition(glm::vec2 velocity);
 
-    // TODO: implement
-    // need to model view projection matrix type shi
     private:
+        // how much of the game world units the camera can see
+        glm::vec2 dimensions;
+        // higher zoom = closer
+        float zoom;
+
+        // camera position in world space
         glm::vec2 position;
-        glm::mat4 viewMat;
-        glm::mat4 projMat;
-        glm::mat4 transform;
 };
 
 } // namespace Render

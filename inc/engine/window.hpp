@@ -2,21 +2,16 @@
 
 #include <SDL3/SDL_video.h>
 #include <SDL3/SDL_events.h>
+#include <engine/configs.hpp>
 #include <string>
 
 namespace Engine {
 
 using Event = SDL_Event;
 
-struct WindowConfig {
-    int width, height;
-    std::string title;
-    SDL_WindowFlags flags;
-};
-
 class Window {
     public:
-        Window(int width, int height, std::string title, SDL_WindowFlags flags);
+        Window(int width, int height, std::string title, bool fullscreen, bool vsync);
         Window(WindowConfig wConf);
 
         ~Window();

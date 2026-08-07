@@ -1,9 +1,10 @@
 #pragma once
 
 #include "engine/asset_manager.hpp"
+#include "engine/configs.hpp"
 #include "engine/render/camera_2d.hpp"
+#include "engine/render/material.hpp"
 #include <array>
-#include <cstdint>
 #include <engine/asset_container.hpp>
 #include <engine/render/shader.hpp>
 #include <engine/render/texture_2d.hpp>
@@ -19,13 +20,12 @@ namespace Render {
 class Renderer2D {
     public:
         // TODO: implement
-        void init(AssetManager& assets);
+        void init(Config::Render config, AssetManager& assets);
         void begin(const Camera2D& camera);
         void drawQuad(
                 glm::vec2 pos,
                 glm::vec2 size,
-                AssetHandler<Texture2D>& newTexture,
-                Shader* customShader = nullptr,
+                Material material,
                 glm::vec4 color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
         void end();
 
@@ -34,11 +34,9 @@ class Renderer2D {
 
         AssetManager* assets = nullptr;
 
-        static constexpr size_t MaxQuadsPerBatch = 500;
+        static constexpr size_t MaxQuadsPerBatch = 512;
         static constexpr size_t MaxVerticesPerBatch = MaxQuadsPerBatch * 4;
         size_t verticeAmount = 0;
-
-        static constexpr uint32_t quadIndices[] { 0, 1, 2, 2, 3, 0 };
 
         std::array<SpriteVertex, MaxVerticesPerBatch> spriteVertices;
         GLuint vao, vbo, ebo;

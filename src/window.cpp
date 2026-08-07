@@ -1,6 +1,7 @@
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_init.h>
 #include <SDL3/SDL_video.h>
+#include <cstdlib>
 #include <glad/glad.h>
 #include <engine/window.hpp>
 #include <iostream>
@@ -23,7 +24,7 @@ Window::Window(WindowConfig config) {
             config.title.c_str(), 
             config.width, 
             config.height,
-            config.flags
+            (config.fullscreen ? SDL_WINDOW_FULLSCREEN : 0) | SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL
             );
 
     if (!_window) {
@@ -31,6 +32,8 @@ Window::Window(WindowConfig config) {
     }
 
     _glContext = SDL_GL_CreateContext(_window);
+
+    SDL_GL_SetSwapInterval(config.vsync ? 1 : 0);
 
     if (!_glContext) {
         throw std::runtime_error("Couldn't create GL context");
@@ -43,8 +46,8 @@ Window::Window(WindowConfig config) {
     std::cout << "Window Constructor End" << std::endl;
 }
 
-Window::Window(int width, int height, std::string title, SDL_WindowFlags flags) {
-    Window(WindowConfig {width, height, title, flags});
+Window::Window(int width, int height, std::string title, bool fullscreen, bool vsync) {
+    Window(WindowConfig {width, height, title, fullscreen, vsync});
 }
 
 Window::~Window() {
@@ -63,7 +66,11 @@ void Window::makeWindowed() {
 }
 
 void Window::updateWindowFlags() {
-    _wConf.flags = SDL_GetWindowFlags(_window);
+    SDL_WindowFlags flags = SDL_GetWindowFlags(_window);
+    _wConf.fullscreen = flags & SDL_WINDOW_FULLSCREEN;
+    int interval;
+    SDL_GL_GetSwapInterval(&interval);
+    _wConf.vsync = abs(interval);
 }
 
 bool Window::pollEvents(Event &event) {

@@ -1,5 +1,6 @@
 #include <engine/render/shader.hpp>
 #include <engine/loader.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include <stdexcept>
 #include <string>
 
@@ -110,5 +111,20 @@ void Shader::setUniform4(std::string uniform, glm::vec4 v) {
     glUniform4f(location, v.x, v.y, v.z, v.w);
 }
 
-} // namespace render
-} // namespace engine
+void Shader::setMatrix2(std::string uniform, glm::mat2 m) {
+    GLint location = getUniformLocation(uniform);
+    glUniformMatrix2fv(location, 1, false, glm::value_ptr(m));
+}
+
+void Shader::setMatrix3(std::string uniform, glm::mat3 m) {
+    GLint location = getUniformLocation(uniform);
+    glUniformMatrix3fv(location, 1, false, glm::value_ptr(m));
+}
+
+void Shader::setMatrix4(std::string uniform, glm::mat4 m) {
+    GLint location = getUniformLocation(uniform);
+    glUniformMatrix4fv(location, 1, false, glm::value_ptr(m));
+}
+
+} // namespace Render
+} // namespace Engine
