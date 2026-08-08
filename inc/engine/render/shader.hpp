@@ -22,7 +22,9 @@ class Shader {
 
         void cache(std::string path, std::string name);
 
-        // TODO: send Uniform1/2/3 etc
+        void setInt(std::string uniform, int v);
+        void setBool(std::string uniform, bool v);
+
         void setUniform1(std::string uniform, float v);
         void setUniform2(std::string uniform, glm::vec2 v);
         void setUniform3(std::string uniform, glm::vec3 v);

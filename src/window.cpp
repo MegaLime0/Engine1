@@ -1,7 +1,7 @@
+#include "engine/configs.hpp"
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_init.h>
 #include <SDL3/SDL_video.h>
-#include <cstdlib>
 #include <glad/glad.h>
 #include <engine/window.hpp>
 #include <iostream>
@@ -9,7 +9,7 @@
 
 namespace Engine {
 
-Window::Window(WindowConfig config) {
+Window::Window(Config::Window config) {
     std::cout << "Window Constructor Start" << std::endl;
 
     if (!SDL_Init(SDL_INIT_VIDEO)) {
@@ -47,7 +47,7 @@ Window::Window(WindowConfig config) {
 }
 
 Window::Window(int width, int height, std::string title, bool fullscreen, bool vsync) {
-    Window(WindowConfig {width, height, title, fullscreen, vsync});
+    Window(Config::Window {width, height, title, fullscreen, vsync});
 }
 
 Window::~Window() {
@@ -77,4 +77,4 @@ bool Window::pollEvents(Event &event) {
     return SDL_PollEvent(&event);
 }
 
-} // namespace engine
+} // namespace Engine

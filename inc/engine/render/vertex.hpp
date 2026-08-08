@@ -5,19 +5,20 @@
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
 
+
 namespace Engine {
 namespace Render {
 
 struct SpriteVertex {
     glm::vec2 pos;
     glm::vec2 uv;
-    glm::vec3 color;
+    glm::vec4 color;
 };
 
 struct TileVertex {
     glm::vec3 pos;
     glm::vec2 uv;
-    glm::vec3 color;
+    glm::vec4 color;
     float textureIndex;
 };
 

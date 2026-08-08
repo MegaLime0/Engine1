@@ -12,7 +12,7 @@ using Event = SDL_Event;
 class Window {
     public:
         Window(int width, int height, std::string title, bool fullscreen, bool vsync);
-        Window(WindowConfig wConf);
+        Window(Config::Window wConf);
 
         ~Window();
 
@@ -28,10 +28,9 @@ class Window {
     private:
         void updateWindowFlags();
 
-        WindowConfig _wConf;
+        Config::Window _wConf;
         SDL_Window* _window;
         SDL_GLContext _glContext;
 };
 
 }
-

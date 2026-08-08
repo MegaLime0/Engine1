@@ -7,7 +7,7 @@
 namespace Engine {
 
 Engine::Engine()
-    :   window(1280, 720, "Test", SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE)
+    :   window(1280, 720, "Test", true, true)
 {
     std::cout << "Engine Constructor End" << std::endl;
 }

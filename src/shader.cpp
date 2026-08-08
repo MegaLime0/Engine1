@@ -89,7 +89,16 @@ GLint Shader::getUniformLocation(std::string uniform) {
     }
 }
 
-// TODO: complete uniform sets
+void Shader::setInt(std::string uniform, int v) {
+    GLint location = getUniformLocation(uniform);
+    glUniform1i(location, v);
+};
+
+void Shader::setBool(std::string uniform, bool v) {
+    GLint location = getUniformLocation(uniform);
+    glUniform1i(location, v);
+}
+
 void Shader::setUniform1(std::string uniform, float v) {
     GLint location = getUniformLocation(uniform);
     glUniform1f(location, v);

@@ -44,10 +44,8 @@ class Renderer2D {
         Camera2D cachedCamera;
 
         Shader* defaultShader = nullptr; 
-        Shader* currentShader = nullptr;
-        Shader* previousShader = nullptr;
-        AssetHandler<Texture2D> currentTexture;
-        AssetHandler<Texture2D> previousTexture;
+        Material currentMaterial;
+        Material previousMaterial;
 };
 
 } // namespace Render

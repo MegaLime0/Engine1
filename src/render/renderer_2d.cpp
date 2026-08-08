@@ -32,7 +32,7 @@ void Renderer2D::init(Config::Render config, AssetManager& assetManager) {
     glVertexAttribPointer(2, 2, GL_FLOAT, false, offsetof(SpriteVertex, uv), nullptr);
     glEnableVertexAttribArray(1);
 
-    glVertexAttribPointer(2, 3, GL_FLOAT, false, offsetof(SpriteVertex, color), nullptr);
+    glVertexAttribPointer(2, 4, GL_FLOAT, false, offsetof(SpriteVertex, color), nullptr);
     glEnableVertexAttribArray(2);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
@@ -60,7 +60,8 @@ void Renderer2D::init(Config::Render config, AssetManager& assetManager) {
 void Renderer2D::begin(const Camera2D& camera) {
     cachedCamera = camera;
     verticeAmount = 0;
-    currentTexture = {};
+    // currentTexture = {};
+    currentMaterial = {};
 }
 
 void Renderer2D::drawQuad(
@@ -69,19 +70,16 @@ void Renderer2D::drawQuad(
         Material material,
         glm::vec4 color) 
 {
-
-    Shader* shaderToUse = material.shader ? material.shader : defaultShader;
-
     bool overVertexLimit = verticeAmount >= MaxVerticesPerBatch;
-    bool textureChanged = currentTexture.isValid() && currentTexture.id != material.diffuseMap.id;
-    bool shaderChanged = material.shader != nullptr && material.shader != previousShader;
+    bool diffuseMapChanged = material.diffuseMap.isValid() && material.diffuseMap.id != currentMaterial.diffuseMap.id;
+    bool normalMapChanged = material.normalMap.isValid() && material.normalMap.id != currentMaterial.normalMap.id;
+    bool shaderChanged = material.shader != nullptr && material.shader != currentMaterial.shader;
 
-    if (overVertexLimit || textureChanged || shaderChanged) {
+    if (overVertexLimit || diffuseMapChanged || normalMapChanged || shaderChanged) {
         flush();
     }
 
-    currentShader = shaderToUse;
-    currentTexture = material.diffuseMap;
+    currentMaterial = material;
 
     spriteVertices[verticeAmount++] = { pos,                                {0, 0}, color };
     spriteVertices[verticeAmount++] = { {pos.x + size.x, pos.y},            {1, 0}, color };
@@ -96,8 +94,14 @@ void Renderer2D::end() {
 void Renderer2D::flush() {
     if (verticeAmount == 0) { return; }
 
+    Shader* currentShader = currentMaterial.shader;
+
     currentShader->use();
-    currentShader->setMatrix4("uViewTransform", cachedCamera.getViewProjection());
+    currentShader->setMatrix4("uViewProjection", cachedCamera.getViewProjection());
+    // setting the index for sampler2d so they know which bound texture to use
+    currentShader->setInt("uDiffuseMap", 0);
+    currentShader->setInt("uNormalMap", 1);
+    currentShader->setBool("uHasNormalMap", currentMaterial.normalMap.isValid());
     // TODO: write the default shaders
     // TODO: dont forget to bind the textures that are going to be used
 
@@ -107,14 +111,11 @@ void Renderer2D::flush() {
     // only vao would need to be bound
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glBufferSubData(GL_ARRAY_BUFFER, 0, verticeAmount * sizeof(SpriteVertex), spriteVertices.data());
-    
-    // draw
-    // TODO: Dont forget to set previousShader and previousTexture 
 
     size_t quadCount = (verticeAmount / 4);
     size_t indiceAmount = quadCount * 6;
     glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(indiceAmount), GL_UNSIGNED_INT, nullptr);
 }
 
-} // namespace renderer
-} // namespace engine
+} // namespace Renderer
+} // namespace Engine
