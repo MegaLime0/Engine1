@@ -5,12 +5,11 @@
 namespace Engine {
 namespace Render {
 
-Camera2D::Camera2D(Config::Camera2D config, glm::vec2 screenDimensions, glm::vec2 position) {
+Camera2D::Camera2D(Config::Camera2D config, glm::vec2 screenDimensions) {
     this->dimensions = { 
         config.visibleWidth, 
         config.visibleWidth / (screenDimensions.x / screenDimensions.y) 
     };
-    this->position = position;
     this->zoom = config.defaultZoom;
 }
 

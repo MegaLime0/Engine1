@@ -14,6 +14,7 @@ class Texture2D {
         ~Texture2D();
 
         GLuint getId() const { return _glID; }
+        void bind() const { glBindTexture(GL_TEXTURE_2D, _glID); };
         Math::Vector2D getDimensions() const {
             return Math::Vector2D { 
                 static_cast<float>(_width), 

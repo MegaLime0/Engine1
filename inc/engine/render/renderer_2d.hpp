@@ -19,9 +19,8 @@ namespace Render {
 
 class Renderer2D {
     public:
-        // TODO: implement
         void init(Config::Render config, AssetManager& assets);
-        void begin(const Camera2D& camera);
+        void begin(Camera2D& camera);
         void drawQuad(
                 glm::vec2 pos,
                 glm::vec2 size,
@@ -41,7 +40,7 @@ class Renderer2D {
         std::array<SpriteVertex, MaxVerticesPerBatch> spriteVertices;
         GLuint vao, vbo, ebo;
 
-        Camera2D cachedCamera;
+        Camera2D* cachedCamera;
 
         Shader* defaultShader = nullptr; 
         Material currentMaterial;

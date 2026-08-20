@@ -12,7 +12,7 @@ namespace Render {
 
 class Camera2D {
     public:
-        Camera2D(Config::Camera2D config, glm::vec2 screenDimensions, glm::vec2 position);
+        Camera2D(Config::Camera2D config, glm::vec2 screenDimensions);
 
         glm::vec2 getDimensions() { return dimensions; }
         void setDimensions(glm::vec2 dimensions) { this->dimensions = dimensions; }

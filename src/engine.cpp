@@ -1,3 +1,5 @@
+#include "engine/configs.hpp"
+#include "engine/render/camera_2d.hpp"
 #include "engine/render/renderer_2d.hpp"
 #include "engine/render/texture_2d.hpp"
 #include "engine/window.hpp"
@@ -6,9 +8,12 @@
 
 namespace Engine {
 
-Engine::Engine()
-    :   window(1280, 720, "Test", true, true)
+Engine::Engine(Config::Window wConf, Config::Render rConf, Config::Camera2D cConf)
+    :   window(wConf), 
+        camera(cConf , {wConf.width, wConf.height})
 {
+    renderer = new Render::Renderer2D();
+    renderer->init(rConf, assets);
     std::cout << "Engine Constructor End" << std::endl;
 }
 
@@ -45,6 +50,10 @@ void Engine::update() {
                 break;
         }
     }
+}
+
+Engine::~Engine() {
+    delete renderer;
 }
 
 } // namespace engine 
